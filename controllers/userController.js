@@ -48,6 +48,8 @@ const loginUser =asyncHandler( async (req, res) => {
 
     const user = await User.findOne({email});
     // Compare password with hased password
+    jwt.publicEncrypt(password);
+    
     if(user && ( await bcrypt.compare(password, user.password))){
         const accessToken = jwt.sign({
             user:{

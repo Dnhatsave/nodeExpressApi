@@ -1,39 +1,39 @@
 const {constants} = require("../constants");
-
 const errorHandler = (err, req, res,next) =>{
+
     const statuscode = res.statusCode ? res.statusCode : 500;
     switch (statuscode) {
         case constants.VALIDATION_ERROR:
             res.json({
-                title: "validation Field", 
+                title:  `${constants.VALIDATION_ERROR}: BAD REQUEST`, 
                 message: err.message, 
                 stackTrace: err.stack
             });
             break;
         case constants.NOT_FOUND:
             res.json({
-                title: "Not Found", 
+                title:  `${constants.NOT_FOUND}: NOT FOUND`, 
                 message: err.message, 
                 stackTrace: err.stack
             });
             break;
             case constants.UNAUTHORIZED:
             res.json({
-                title: "Uauthorized", 
+                title:  `${constants.UNAUTHORIZED}: NOT AUTHORIZED`, 
                 message: err.message, 
                 stackTrace: err.stack
             });
             break;
             case constants.FORBIDDEN:
             res.json({
-                title: "Forbidden", 
+                title:  `${constants.FORBIDDEN}: FORBIDDEN`, 
                 message: err.message, 
                 stackTrace: err.stack
             });
             break;
             case constants.SERVER_ERROR:
             res.json({
-                title: "Server Error", 
+                title:  `${constants.SERVER_ERROR}: INTERNAL SERVER ERROR`, 
                 message: err.message, 
                 stackTrace: err.stack
             });
